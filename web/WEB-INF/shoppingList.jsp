@@ -15,17 +15,17 @@
     <body>
         <h1>Shopping List!</h1>
 
-        <form action="shoppinglist" method="POST">
+        <form action="" method="POST">
             <span>Hello ${username}!</span>
-            <a href="" action="logout">Logout</a>
+            <a href="shoppinglist?action=logout">Logout</a>
         </form>
         <br>
         <br>
         <h2>List</h2>
         <br>
         <form action="" method="POST">
-            Add item: <input type="text" action="add" name="item">
-            <input type="submit" value="Add">
+            Add item: <input type="text" name="item">
+            <input type="submit" name="action" value="add">
 
         </form>
         <br>
@@ -36,7 +36,7 @@
                     <ul>${item}</ul>
                 </c:forEach>
             </table>
-            <input type="submit" value="Delete" action="delete">
+            <input type="submit" name="action" value="delete">
         </form>
     </body>
 </html>
