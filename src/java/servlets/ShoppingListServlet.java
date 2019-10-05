@@ -61,10 +61,12 @@ public class ShoppingListServlet extends HttpServlet {
         switch (action) {
             case "register":
                 session.setAttribute("username", request.getParameter("username"));
+                session.setAttribute("username", username);
                 break;
             case "logout":
-                session.removeAttribute("user");
+                session.removeAttribute("username");
                 list = new ArrayList();
+                username = null;
                 break;
             case "add":
                 //add to an arrayList
@@ -72,9 +74,15 @@ public class ShoppingListServlet extends HttpServlet {
                 break;
             case "delete":
                 //delete inventory items from the arrayList
+                try {
+                    list.remove(Integer.parseInt(request.getParameter("item")) - 1);
+                } catch (NumberFormatException e) {
+                    
+                }
                 break;
         }
 
+        session.setAttribute("username", username);
         session.setAttribute("list", list);
 
         if (username == null || username.equals("")) {

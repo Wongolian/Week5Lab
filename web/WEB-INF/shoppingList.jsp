@@ -29,7 +29,6 @@
 
         </form>
         <br>
-        <br>
         <!--<form action="shoppinglist" method="POST">-->
         <!--<table>-->
         <%--<c:forEach var="item" items="${list}">--%>
