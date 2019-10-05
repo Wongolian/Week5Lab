@@ -23,20 +23,33 @@
         <br>
         <h2>List</h2>
         <br>
-        <form action="" method="POST">
+        <form action="shoppinglist" method="POST">
             Add item: <input type="text" name="item">
             <input type="submit" name="action" value="add">
 
         </form>
         <br>
         <br>
-        <form action="" method="POST">
-            <table>
-                <c:forEach var="item" items="${item}">
-                    <ul>${item}</ul>
+        <!--<form action="shoppinglist" method="POST">-->
+        <!--<table>-->
+        <%--<c:forEach var="item" items="${list}">--%>
+            <!--<ul>${item}</ul>-->
+        <%--</c:forEach>--%>
+        <!--</table>-->
+        <!--<input type="submit" name="action" value="delete">-->
+        <!--</form>-->
+
+        <form action="shoppinglist" method="post">
+            <ul>
+                <c:forEach items="${list}" var="item" varStatus="loop">
+                    <label>
+                        <input type="radio" name="item" value="${loop.count}"> ${item}
+                        <br>
+                    </label>
                 </c:forEach>
-            </table>
-            <input type="submit" name="action" value="delete">
+            </ul>
+
+            <input type="submit" name="action" value="delete" />
         </form>
     </body>
 </html>

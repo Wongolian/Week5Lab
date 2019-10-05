@@ -37,13 +37,19 @@ public class ShoppingListServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("user");
+        String username = (String) session.getAttribute("username");
 
         if (username == null) {
-            username = request.getParameter("user");
+            username = request.getParameter("username");
+        } else {
+            username = username;
         }
-        
         ArrayList<String> list = (ArrayList<String>) session.getAttribute("list");
+        if (list == null) {
+            list = new ArrayList();
+        } else {
+            list = list;
+        }
 
         String action = request.getParameter("action");
         if (action == null) {
@@ -51,14 +57,14 @@ public class ShoppingListServlet extends HttpServlet {
         } else {
             action = action;
         }
-        
+
         switch (action) {
             case "register":
-                session.setAttribute("username", request.getParameter("user"));
+                session.setAttribute("username", request.getParameter("username"));
                 break;
             case "logout":
                 session.removeAttribute("user");
-                list.clear();
+                list = new ArrayList();
                 break;
             case "add":
                 //add to an arrayList
@@ -68,6 +74,8 @@ public class ShoppingListServlet extends HttpServlet {
                 //delete inventory items from the arrayList
                 break;
         }
+
+        session.setAttribute("list", list);
 
         if (username == null || username.equals("")) {
             getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
